@@ -2,7 +2,7 @@
 
 Run the streamlit Application:
 ```
-streamlit run recommendation_ui.py
+streamlit run frontend/recommendation_ui.py
 ```
 
 Run using uvicorn:
