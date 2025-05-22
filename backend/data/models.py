@@ -31,5 +31,5 @@ class Prerequisite(Base):
     course_id = Column(Integer, ForeignKey("courses.id"), nullable=False)
     prereq_id = Column(Integer, ForeignKey("courses.id"), nullable=False)
     
-        course = relationship("Course", foreign_keys=[course_id], back_populates="prerequisites")
+    course = relationship("Course", foreign_keys=[course_id], back_populates="prerequisites")
     prereq = relationship("Course", foreign_keys=[prereq_id], back_populates="required_by")
