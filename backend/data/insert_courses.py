@@ -68,7 +68,7 @@ def init_courses():
             "description": "Object-oriented analysis and design patterns"
         },
         {
-            "code": "CS313",  # Changed duplicate CS312 to CS313
+            "code": "CS313",
             "name": "Advanced Topics in Algorithms",
             "credits": 3,
             "type": "Core",
@@ -112,7 +112,7 @@ def init_courses():
         {
             "code": "CS395",
             "name": "Capstone Preparation",
-            "credits": 1,  # Special 1-credit course
+            "credits": 1,
             "type": "Capstone",
             "description": "Preparation for capstone project (2nd year standing required)"
         },

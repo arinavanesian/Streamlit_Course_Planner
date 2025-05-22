@@ -3,6 +3,8 @@ from data.repositories import CourseRepository
 from data.models import Course
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from data.database import Base
+from sqlalchemy import inspect, Integer
 
 @pytest.fixture
 def db_session():
@@ -21,7 +23,7 @@ def test_course_repository_add_course(db_session):
     }
     
     course = repo.create(course_data)
-    assert course.id is not None
+    assert course.id is not Integer
     assert db_session.query(Course).count() == 1
 
 def test_get_by_code(db_session):

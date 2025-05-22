@@ -28,8 +28,8 @@ class RecommendationService:
             raise ValueError("GEMINI_API_KEY environment variable not set")
         
         genai.configure(api_key=api_key)
-        
-        # Configure safety settings
+
+        # Add more safety settings as needed, I chose the basics
         safety_settings = {
             'HARM_CATEGORY_HARASSMENT': 'BLOCK_NONE',
             'HARM_CATEGORY_HATE_SPEECH': 'BLOCK_NONE',
@@ -86,11 +86,9 @@ class RecommendationService:
             if not student_info.get('completed_courses'):
                 raise ValueError("At least one completed course is required")
             
-            # Get course data
             courses = self.course_repo.get_all()
             available_courses = self._format_course_list(courses)
             
-            # Generate prompt
             prompt = self._build_prompt(student_info, available_courses)
             logger.info(f"Generated prompt: {prompt[:200]}...")
             
@@ -177,7 +175,6 @@ class RecommendationService:
 
     def _format_response(self, raw_response: str) -> str:
         """Format and sanitize the response"""
-        # You can remove if no potentially harmful HTML/JS is expected
         sanitized = raw_response.replace("<", "&lt;").replace(">", "&gt;")
         
         return f"""

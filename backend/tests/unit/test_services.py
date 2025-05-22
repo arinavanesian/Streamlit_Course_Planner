@@ -16,7 +16,6 @@ def mock_db():
 def test_recommendation_service(mock_db):
     service = RecommendationService(mock_db)
     
-    # Mock Gemini response
     service.model = Mock()
     service.model.generate_content.return_value.text = "Test recommendation"
     

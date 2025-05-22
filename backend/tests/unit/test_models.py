@@ -1,6 +1,6 @@
 import pytest
 from backend.data.models import Course, Prerequisite
-from sqlalchemy import inspect
+from sqlalchemy import inspect, Integer
 
 def test_course_model():
     course = Course(
@@ -12,7 +12,7 @@ def test_course_model():
     )
     
     assert course.code == "CS101"
-    assert isinstance(course.id, type(None)) 
+    assert isinstance(course.id, type(Integer)) 
     assert inspect(course).attrs.keys() == {
         'id', 'code', 'name', 'credits', 'type', 'description',
         'prerequisites', 'required_by'
