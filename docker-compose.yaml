@@ -16,7 +16,7 @@ services:
     build: ./backend
     environment:
       DATABASE_URL: postgresql://postgres:chemi_t2000@db:5432/course_planner
-      GEMINI_API_KEY: ${GEMINI_API_KEY}  # From .env file
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
     ports:
       - "8000:8000"
     depends_on:

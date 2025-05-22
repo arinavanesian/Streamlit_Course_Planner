@@ -3,13 +3,11 @@ import requests
 from datetime import datetime
 import os
 
-# Configuration
 API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000/api/v1")
 COMPLETED_COURSES_OPTIONS = [
     "CS111", "CS120", "CS121", "CS130", "CS211", "IESM106"
 ]
 
-# Page Configuration
 st.set_page_config(
     page_title="AUA Course Planner",
     page_icon="📚",
@@ -54,11 +52,9 @@ def display_recommendation():
 def main():
     initialize_session_state()
     
-    # Header
     st.title("📚 AUA Computer Science Course Planner")
     st.markdown("Get personalized course recommendations based on your academic progress and goals")
     
-    # Recommendation Form
     with st.form("recommendation_form"):
         cols = st.columns(2)
         
@@ -90,7 +86,6 @@ def main():
                 index=0
             )
         
-        # Additional options
         with st.expander("Advanced Options"):
             max_courses = st.slider(
                 "Maximum Recommendations",
@@ -121,13 +116,11 @@ def main():
                 else:
                     st.error("Failed to generate recommendations. Please try again.")
 
-    # Display results
     if st.session_state.recommendation:
         st.divider()
         st.subheader("Your Recommended Courses")
         display_recommendation()
         
-        # Download button
         timestamp = st.session_state.last_submit.strftime("%Y%m%d_%H%M")
         st.download_button(
             label="Download Recommendations",

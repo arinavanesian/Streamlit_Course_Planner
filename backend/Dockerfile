@@ -1,11 +1,11 @@
-FROM python:3.9-slim-bookworm as builder
+FROM python:3.9-slim-bullseye as builder
 
 WORKDIR /app
 COPY requirements.txt .
 
 RUN pip install --user -r requirements.txt
 
-FROM python:3.9-slim-bookworm
+FROM python:3.9-slim
 
 WORKDIR /app
 COPY --from=builder /root/.local /root/.local
