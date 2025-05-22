@@ -12,8 +12,7 @@ def init_prerequisites():
     db = SessionLocal()
     course_repo = CourseRepository(db)
     prereq_repo = PrerequisiteRepository(db)
-    
-    # Format: (course code, prerequisite course code)
+    # Due to less initial pdata, I am hardcoding the prerequisites
     prerequisites = [
         ("CS340", "IESM106"),  # Machine Learning requires Probability
         ("CS310", "CS111"),    # Theory of Computing requires Discrete Math

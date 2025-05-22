@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Text, ForeignKey
 from sqlalchemy.orm import relationship
-from .database import Base  # Changed to relative import
+from .database import Base
 
 class Course(Base):
     __tablename__ = "courses"
@@ -12,7 +12,6 @@ class Course(Base):
     type = Column(String(20), nullable=False)
     description = Column(Text)
     
-    # Relationships (unchanged from your version)
     prerequisites = relationship(
         "Prerequisite",
         foreign_keys="[Prerequisite.course_id]",
@@ -32,6 +31,5 @@ class Prerequisite(Base):
     course_id = Column(Integer, ForeignKey("courses.id"), nullable=False)
     prereq_id = Column(Integer, ForeignKey("courses.id"), nullable=False)
     
-    # Relationships (unchanged)
-    course = relationship("Course", foreign_keys=[course_id], back_populates="prerequisites")
+        course = relationship("Course", foreign_keys=[course_id], back_populates="prerequisites")
     prereq = relationship("Course", foreign_keys=[prereq_id], back_populates="required_by")

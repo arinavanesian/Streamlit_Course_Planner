@@ -6,7 +6,6 @@ import os
 import logging
 from datetime import datetime
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -83,7 +82,7 @@ class RecommendationService:
             tuple: (markdown_response, metadata)
         """
         try:
-            # Validate input
+            # Validating the input, make sure at least one completed course is provided
             if not student_info.get('completed_courses'):
                 raise ValueError("At least one completed course is required")
             
@@ -99,11 +98,10 @@ class RecommendationService:
             start_time = datetime.now()
             response = self._get_gemini_response(prompt)
             processing_time = (datetime.now() - start_time).total_seconds()
-            
-            # Validate and format
+        
             formatted = self._format_response(response)
             
-            # Generate metadata
+            # Generating metadata based on the courses taken
             metadata = {
                 "generated_at": datetime.now().isoformat(),
                 "processing_seconds": processing_time,
@@ -179,7 +177,7 @@ class RecommendationService:
 
     def _format_response(self, raw_response: str) -> str:
         """Format and sanitize the response"""
-        # Remove any potentially harmful HTML/JS
+        # You can remove if no potentially harmful HTML/JS is expected
         sanitized = raw_response.replace("<", "&lt;").replace(">", "&gt;")
         
         return f"""

@@ -4,7 +4,7 @@ from datetime import datetime
 import os
 
 # Configuration
-API_BASE_URL = os.getenv("API_BASE_URL", "http://backend:8000/api/v1")
+API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000/api/v1")
 COMPLETED_COURSES_OPTIONS = [
     "CS111", "CS120", "CS121", "CS130", "CS211", "IESM106"
 ]

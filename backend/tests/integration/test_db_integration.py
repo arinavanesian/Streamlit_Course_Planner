@@ -13,11 +13,9 @@ def test_course_repository_integration():
     db = SessionLocal()
     repo = CourseRepository(db)
     
-    # Test create and retrieve
     course = repo.create({"code": "CS101", "name": "Test", "credits": 3, "type": "Core"})
     assert repo.get_by_code("CS101").name == "Test"
     
-    # Test duplicate prevention
     with pytest.raises(Exception):
         repo.create({"code": "CS101", "name": "Duplicate"})
     

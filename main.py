@@ -1,13 +1,12 @@
 from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import Session
 from backend.data.models import Course
-from backend.data import get_db  # From data/__init__.py
-from backend.api import router  # From api/__init__.py
+from backend.data import get_db  
+from backend.api import router
 from backend.service.recommendation_service import RecommendationService
 
 app = FastAPI()
 
-# Include API router from backend.api
 app.include_router(router, prefix="/api/v1")
 
 

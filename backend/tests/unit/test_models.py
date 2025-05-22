@@ -12,7 +12,7 @@ def test_course_model():
     )
     
     assert course.code == "CS101"
-    assert isinstance(course.id, type(None))  # ID not assigned yet
+    assert isinstance(course.id, type(None)) 
     assert inspect(course).attrs.keys() == {
         'id', 'code', 'name', 'credits', 'type', 'description',
         'prerequisites', 'required_by'

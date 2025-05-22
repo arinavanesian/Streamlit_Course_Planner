@@ -1,13 +1,11 @@
-# Build stage
-FROM python:3.9-slim as builder
+FROM python:3.9-slim-bookworm as builder
 
 WORKDIR /app
 COPY requirements.txt .
 
 RUN pip install --user -r requirements.txt
 
-# Runtime stage
-FROM python:3.9-slim
+FROM python:3.9-slim-bookworm
 
 WORKDIR /app
 COPY --from=builder /root/.local /root/.local
@@ -16,8 +14,6 @@ COPY . .
 ENV PATH=/root/.local/bin:$PATH
 ENV PYTHONPATH=/app
 
-# Gemini API key can be passed via docker-compose
-#ENV GEMINI_API_KEY=${GEMINI_API_KEY} 
 
 EXPOSE 8000
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
